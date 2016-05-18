@@ -1,0 +1,40 @@
+背包九讲（1）	http://acm.hust.edu.cn/vjudge/contest/view.action?cid=22694#overview
+Problem A    HDU 1059    Dividing
+Problem B    HDU 1114    Piggy-Bank
+Problem C    HDU 1171    Big Event in HDU
+Problem D    HDU 1203    I NEED A OFFER!
+Problem E    HDU 1561    The more, The Better
+Problem F    HDU 1671    Phone List
+Problem G    HDU 1672    Cuckoo Hashing
+Problem H    HDU 1712    ACboy needs your help
+Problem I    HDU 2159    FATE
+Problem J    HDU 2191    悼念512汶川大地震遇难同胞――珍惜现在，感恩生活
+Problem K    HDU 2415    Bribing FIPA
+Problem L    HDU 2546    饭卡
+Problem M    HDU 2602    Bone Collector
+Problem N    HDU 2639    Bone Collector II
+Problem O    HDU 2844    Coins
+Problem P    HDU 3033    I love sneakers!
+Problem Q    HDU 3449    Consumer
+Problem R    HDU 3466    Proud Merchants
+Problem S    HDU 3535    AreYouBusy
+Problem T    HDU 3810    Magina
+Problem U    HDU 4281    Judges' response
+背包九讲（2）	http://acm.hust.edu.cn/vjudge/contest/view.action?cid=22695#overview
+Problem A    POJ 1276    Cash Machine
+Problem B    POJ 1837    Balance
+Problem C    POJ 1976    A Mini Locomotive
+Problem D    POJ 2063    Investment
+Problem E    POJ 2184    Cow Exhibition
+Problem F    POJ 2392    Space Elevator
+Problem G    POJ 2923    Relocation
+Problem H    POJ 3093    Margaritas on the River Walk
+Problem I    POJ 3181    Dollar Dayz
+Problem J    POJ 3211    Washing Clothes
+Problem K    POJ 3260    The Fewest Coins
+Problem L    UVA 147     Dollars
+Problem M    UVA 562     Dividing coins
+Problem N    UVA 624     CD
+Problem O    UVA 674     Coin Change
+Problem P    ZOJ 3524    Crazy Shopping
+Problem Q    ZOJ 3662    Math Magic
