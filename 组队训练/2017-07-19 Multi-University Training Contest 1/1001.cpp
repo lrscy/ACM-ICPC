@@ -64,7 +64,7 @@ int main() {
             }
         }
         dfs( 1, -1 );
-        ans2 = 2.0 * sum / ( n * ( n - 1 ) );
+        ans2 = 2.0 * sum / ( 1LL * n * ( n - 1 ) );
         printf( "%I64d %.2f\n", ans1, ans2 );
     }
     return 0;

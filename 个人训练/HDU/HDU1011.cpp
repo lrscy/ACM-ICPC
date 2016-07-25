@@ -20,8 +20,8 @@ void dfs( int u, int fa ) {
         if( v == fa ) continue;
         dfs( v, u );
         for( int j = m; j >= num; --j ) {
-            for( int k = 1; k <= j - num; ++k )
-                dp[u][j] = max( dp[u][j], dp[u][j - k] + dp[v][k] );
+            for( int k = num; k < j; ++k )
+                dp[u][j] = max( dp[u][j], dp[u][k] + dp[v][j - k] );
         }
     }
     return ;

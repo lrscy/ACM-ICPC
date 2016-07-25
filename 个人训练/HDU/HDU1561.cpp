@@ -18,8 +18,8 @@ int dfs( int u ) {
         int v = es[i].to;
         tot += dfs( v );
         for( int j = tot; j >= 1; --j ) {
-            for( int k = 1; k + j <= tot + 1; ++k )
-                dp[u][j + k] = max( dp[u][j + k], dp[u][j] + dp[v][k] );
+            for( int k = 0; k < j; ++k )
+                dp[u][j] = max( dp[u][j], dp[u][j - k] + dp[v][k] );
         }
     }
     return tot;
