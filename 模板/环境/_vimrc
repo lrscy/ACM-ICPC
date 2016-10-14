@@ -11,11 +11,7 @@ set cindent
 set number
 set nobackup
 set backspace=eol,indent,start
-set guifont=Consolas:h10
-" set encoding=cp936
-" set fileencoding=utf-8
-" set fileencodings=ucs-bom,utf-8,cp936
-" set termencoding=utf-8
+set guifont=Droid\ Sans\ Mono\ 12
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -25,8 +21,8 @@ nmap wx <C-w>x
 nmap <F7> :vsp %<.in <CR>
 nmap <F12> :!python <CR>
 autocmd FileType c,cpp nmap <F8> <ESC>:w <CR><ESC>:!g++ % -std=c++11 -o2 -o %< <CR>
-autocmd FileType c,cpp nmap <F9> :!%< <%<.in <CR>
-autocmd FileType c,cpp nmap <F10> :!%< <CR>
+autocmd FileType c,cpp nmap <F9> :!./%< <%<.in <CR>
+autocmd FileType c,cpp nmap <F10> :!./%< <CR>
 autocmd FileType java nmap <F8> <ESC>:w <CR><ESC>:!javac %<.java <CR>
 autocmd FileType java nmap <F9> :!java %< <%<.in <CR>
 autocmd FileType java nmap <F10> :!java % <CR>
