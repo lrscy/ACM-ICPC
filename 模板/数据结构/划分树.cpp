@@ -1,5 +1,9 @@
-/* 待验
-    ;
+/* HDU 3473 已验
+    求区间第K大
+    cnt数组 区间内有多少 <= 中位数的数字
+    num数组 30层划分树，存原始数组及排序后的数组
+    sum数组 前缀和
+    leftsum 区间小于中位数的数前缀和
 */
 #include <bits/stdc++.h>
 using namespace std;
