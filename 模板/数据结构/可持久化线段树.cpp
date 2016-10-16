@@ -1,4 +1,6 @@
-// lazy 不下放，只标记，查询时带上即可 省去许多因下放而产生的新节点
+/* HDU 4348 已验
+    lazy 不下放，只标记，查询时带上即可 省去许多因下放而产生的新节点
+*/
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long LL;
