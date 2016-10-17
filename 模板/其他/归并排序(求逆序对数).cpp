@@ -41,8 +41,7 @@ void _merge_sort( int l, int r ) {
 }
 
 int main() {
-    int i;
-    int n;
+    int i, n;
     while( ~scanf( "%d", &n ) && n ) {
         cnt = 0;
         for( i = 0; i < n; ++i )

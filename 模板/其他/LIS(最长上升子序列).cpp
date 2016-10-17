@@ -6,8 +6,7 @@ int n, a[20010];
 int c[20010];
 int len = 0;
 
-int find( int x )
-{
+int find( int x ) {
     int l = 1, r = len, mid;
     while( l <= r ) {
         mid = ( l + r ) >> 1;
