@@ -25,8 +25,7 @@ autocmd FileType c,cpp nmap <F9> :!./%< <%<.in <CR>
 autocmd FileType c,cpp nmap <F10> :!./%< <CR>
 autocmd FileType java nmap <F8> <ESC>:w <CR><ESC>:!javac %<.java <CR>
 autocmd FileType java nmap <F9> :!java %< <%<.in <CR>
-autocmd FileType java nmap <F10> :!java % <CR>
-autocmd FileType tex nmap <F8> <ESC>:w <CR><ESC>:!run.bat %< <CR>
+autocmd FileType java nmap <F10> :!java %< <CR>
 
 "设置配色方案
 colorscheme desert
