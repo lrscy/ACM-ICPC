@@ -11,7 +11,7 @@ int find( int x )
     int l = 1, r = len, mid;
     while( l <= r ) {
         mid = ( l + r ) >> 1;
-        if( x > c[mid] ) l = mid + 1; //记忆方法:求上升序列，就表示x更大，那么就是大于
+        if( x > c[mid] ) l = mid + 1; //求上升序列，就表示x更大，那么就是大于
         else r = mid - 1;
     }
     return l;
