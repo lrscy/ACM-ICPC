@@ -1,5 +1,6 @@
 /*
     add双向边连续建图，cnt从0开始，^操作确定相邻两边
+    点范围src~des，src可以为0
 */
 #include <iostream>
 #include <cstring>
