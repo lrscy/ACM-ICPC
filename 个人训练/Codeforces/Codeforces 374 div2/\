@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int MAXN = 110;
+
+char s[MAXN][MAXN];
+int n, m;
+
+int main() {
+    ;
+    return 0;
+}
