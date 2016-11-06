@@ -1,2 +1,2 @@
-# ACM
-ACM训练
+# ACM-ICPC
+ACM-ICPC训练
