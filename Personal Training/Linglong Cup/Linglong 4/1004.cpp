@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int MOD=1e4+7;
-typedef int ll ;
+typedef long long ll;
+const ll MOD=1e4+7;
 ll mod_pow(ll a,ll b )
 {
     ll ret=1;
@@ -29,23 +29,23 @@ ll lucas_(ll a,ll k)
         ll aa=a%MOD,bb=k%MOD;
         if(aa<bb) return 0;
         ret*=factorial[aa]*mod_pow(factorial[bb]*factorial[aa-bb]%MOD,MOD-2)%MOD;
-            a/=MOD;
-            k/=MOD;
+        a/=MOD;
+        k/=MOD;
     }
     return ret;
 }
 int T;
-int x,y;
+ll x,y;
 int main(){
     scanf("%d",&T);
     init();
     while(T--)
     {
-        scanf("%d%d",&x,&y);
+        scanf("%lld%lld",&x,&y);
         ll ans=(x-y+1)%MOD;
-        ans *= lucas_(x+y,y);
+        ans = ans * lucas_(x+y,y) % MOD;
         ans=ans*mod_pow(x+1,MOD-2)%MOD;
-        printf("%d\n",ans);
+        printf("%lld\n",ans);
     }
     return 0;
 }
