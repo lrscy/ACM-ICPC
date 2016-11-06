@@ -7,19 +7,8 @@ const int MOD = 1e9 + 7;
 #define rson rt << 1 | 1, mid + 1, r
 
 struct Martix {
-    LL a[2][2];
-    void init() { a[0][0] = 0; a[0][1] = a[1][0] = 1; a[1][1] = 1; }
-    void zero() { memset( a, 0, sizeof a ); }
-    void one() { a[0][0] = a[1][1] = 1; a[0][1] = a[1][0] = 0; }
-    bool operator == ( const Martix &tm ) {
-        for( int i = 0; i < 2; ++i ) {
-            for( int j = 0; j < 2; ++j )
-                if( a[i][j] != tm.a[i][j] )
-                    return false;
-        }
-        return true;
-    }
-    Martix operator + ( const Martix &tm ) {
+    int a[2][2];
+    Martix operator + ( const Martix &tm ) const {
         Martix retm;
         for( int i = 0; i < 2; ++i ) {
             for( int j = 0; j < 2; ++j )
@@ -27,23 +16,24 @@ struct Martix {
         }
         return retm;
     }
-    Martix operator * ( const Martix &tm ) {
+    Martix operator * ( const Martix &tm ) const {
         Martix retm;
-        retm.zero();
+        retm.a[0][0] = retm.a[0][1] = retm.a[1][0] = retm.a[1][1] = 0;
         for( int i = 0; i < 2; ++i ) {
-            for( int j = 0; j < 2; ++j )
-                for( int k = 0; k < 2; ++k )
-                    retm.a[i][j] = ( retm.a[i][j] + a[i][k] * tm.a[k][j] % MOD ) % MOD;
+            for( int k = 0; k < 2; ++k )
+                if( a[i][k] )
+                    for( int j = 0; j < 2; ++j )
+                        retm.a[i][j] = ( retm.a[i][j] + 1LL * a[i][k] * tm.a[k][j] % MOD ) % MOD;
         }
         return retm;
     }
 };
-Martix node[MAXN << 2], lazy[MAXN << 2], zero;
+Martix node[MAXN << 2], lazy[MAXN << 2];
 int n, m;
 
 Martix mpow( Martix a, int b ) {
     Martix ret;
-    ret.one();
+    ret.a[0][0] = ret.a[1][1] = 1; ret.a[0][1] = ret.a[1][0] = 0;
     while( b ) {
         if( b & 1 ) ret = ret * a;
         a = a * a;
@@ -53,8 +43,8 @@ Martix mpow( Martix a, int b ) {
 }
 
 void build( int rt, int l, int r ) {
-    node[rt].init();
-    lazy[rt].one();
+    node[rt].a[0][0] = 0; node[rt].a[0][1] = node[rt].a[1][0] = node[rt].a[1][1] = 1;
+    lazy[rt].a[0][0] = lazy[rt].a[1][1] = 1; lazy[rt].a[0][1] = lazy[rt].a[1][0] = 0;
     if( l == r ) {
         int x;
         scanf( "%d", &x );
@@ -66,31 +56,38 @@ void build( int rt, int l, int r ) {
     node[rt] = node[rt << 1] + node[rt << 1 | 1];
 }
 
+bool judge( const Martix &tm ) {
+    for( int i = 0; i < 2; ++i ) {
+        for( int j = 0; j < 2; ++j )
+            if( tm.a[i][j] )
+                return false;
+    }
+    return true;
+}
+
 void dowork( int rt, int l, int r ) {
-    if( !( lazy[rt] == zero ) ) {
+    if( !judge( lazy[rt] ) ) {
         int son = rt << 1;
         lazy[son] = lazy[son] * lazy[rt]; node[son] = node[son] * lazy[rt];
         son = rt << 1 | 1;
         lazy[son] = lazy[son] * lazy[rt]; node[son] = node[son] * lazy[rt];
-        lazy[rt].one();
+        lazy[rt].a[0][0] = lazy[rt].a[1][1] = 1; lazy[rt].a[0][1] = lazy[rt].a[1][0] = 0;
     }
 }
 
-void update( int rt, int l, int r, int x, int y, int z ) {
+void update( int rt, int l, int r, int x, int y, Martix &tm ) {
     if( x <= l && r <= y ) {
-        Martix tm; tm.init();
-        tm = mpow( tm, z );
         lazy[rt] = lazy[rt] * tm;
         node[rt] = node[rt] * tm;
         return ;
     }
     dowork( rt, l, r );
     int mid = ( l + r ) >> 1;
-    if( y <= mid ) update( lson, x, y, z );
-    else if( x > mid ) update( rson, x, y, z );
+    if( y <= mid ) update( lson, x, y, tm );
+    else if( x > mid ) update( rson, x, y, tm );
     else {
-        update( lson, x, mid, z );
-        update( rson, mid + 1, y, z );
+        update( lson, x, mid, tm );
+        update( rson, mid + 1, y, tm );
     }
     node[rt] = node[rt << 1] + node[rt << 1 | 1];
 }
@@ -99,7 +96,7 @@ Martix query( int rt, int l, int r, int x, int y ) {
     if( x <= l && r <= y ) { return node[rt]; }
     dowork( rt, l, r );
     Martix tm;
-    tm.zero();
+    tm.a[0][0] = tm.a[0][1] = tm.a[1][0] = tm.a[1][1] = 0;
     int mid = ( l + r ) >> 1;
     if( y <= mid ) tm = tm + query( lson, x, y );
     else if( x > mid ) tm = tm + query( rson, x, y );
@@ -111,18 +108,20 @@ Martix query( int rt, int l, int r, int x, int y ) {
 }
 
 int main() {
-    zero.zero();
     scanf( "%d%d", &n, &m );
     build( 1, 1, n );
     for( int i = 0, t, x, y, z; i < m; ++i ) {
         scanf( "%d", &t );
         if( t == 1 ) {
             scanf( "%d%d%d", &x, &y, &z );
-            update( 1, 1, n, x, y, z );
+            Martix tm;
+            tm.a[0][0] = 0; tm.a[0][1] = tm.a[1][0] = tm.a[1][1] = 1;
+            tm = mpow( tm, z );
+            update( 1, 1, n, x, y, tm );
         } else {
             scanf( "%d%d", &x, &y );
             Martix tm = query( 1, 1, n, x, y );
-            printf( "%lld\n", tm.a[1][0] );
+            printf( "%d\n", tm.a[1][0] );
         }
     }
     return 0;
